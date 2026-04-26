@@ -20,47 +20,35 @@
 
   <script>
     const list = document.getElementById("post-list");
-  
+
     // sort newest → oldest
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-  
-    // group by week
-    function getWeekStart(dateStr) {
-      const date = new Date(dateStr);
-      const day = date.getDay(); // 0 (Sun) - 6 (Sat)
-      const diff = date.getDate() - day;
-      const weekStart = new Date(date.setDate(diff));
-      weekStart.setHours(0, 0, 0, 0);
-      return weekStart.toISOString().split("T")[0];
-    }
-  
+
+    // group by manual week label
     const grouped = {};
-  
+
     posts.forEach(post => {
-      const week = getWeekStart(post.date);
-  
+      const week = post.week || "Uncategorized";
+
       if (!grouped[week]) {
         grouped[week] = [];
       }
-  
+
       grouped[week].push(post);
     });
-  
+
     // render groups
-    Object.keys(grouped)
-      .sort((a, b) => new Date(b) - new Date(a))
-      .forEach(week => {
-        const header = document.createElement("h2");
-        header.textContent = `Week of ${week}`;
-  
-        list.appendChild(header);
-  
-        grouped[week].forEach(post => {
-          const li = document.createElement("li");
-          li.innerHTML = `<a href="${post.url}">${post.title}</a> (${post.date})`;
-          list.appendChild(li);
-        });
+    Object.keys(grouped).forEach(week => {
+      const header = document.createElement("h2");
+      header.textContent = week;
+      list.appendChild(header);
+
+      grouped[week].forEach(post => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="${post.url}">${post.title}</a> (${post.date})`;
+        list.appendChild(li);
       });
+    });
   </script>
 
 </body>
