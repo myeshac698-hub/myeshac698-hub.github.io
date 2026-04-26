@@ -6,6 +6,7 @@
 </head>
 
 <body>
+
   <nav>
     <a href="index.html">Home</a> |
     <a href="thoughts.html">Thoughts</a>
@@ -13,8 +14,24 @@
 
   <h1>Thoughts</h1>
 
-  <ul>
-    <li><a href="posts/post1.html">Thoughts on [Book/Movie]</a></li>
-  </ul>
+  <ul id="post-list"></ul>
+
+  <script src="posts.js"></script>
+
+  <script>
+    const list = document.getElementById("post-list");
+
+    posts.forEach(post => {
+      const li = document.createElement("li");
+
+      li.innerHTML = `
+        <a href="${post.url}">${post.title}</a>
+        <small>(${post.date})</small>
+      `;
+
+      list.appendChild(li);
+    });
+  </script>
+
 </body>
 </html>
