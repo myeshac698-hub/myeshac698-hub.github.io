@@ -17,3 +17,22 @@ body {
   a {
     text-decoration: none;
   }
+
+ details {
+  margin-bottom: 1rem;
+}
+
+summary {
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+summary:hover {
+  opacity: 0.7;
+}
+
+details ul {
+  margin-top: 0.5rem;
+} 

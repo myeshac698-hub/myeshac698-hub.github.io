@@ -21,14 +21,14 @@
   <script>
     const list = document.getElementById("post-list");
 
-    // sort newest → oldest
+    // newest posts first
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    // group by manual week label
+    // group by week number
     const grouped = {};
 
     posts.forEach(post => {
-      const week = post.week || "Uncategorized";
+      const week = post.week || 0;
 
       if (!grouped[week]) {
         grouped[week] = [];
@@ -37,21 +37,46 @@
       grouped[week].push(post);
     });
 
-    // render groups
+    // render grouped weeks
     Object.keys(grouped)
       .sort((a, b) => b - a)
       .forEach(week => {
-        const header = document.createElement("h2");
-        const formattedWeek = `Week ${String(week).padStart(2, "0")}`;
-        header.textContent = formattedWeek;
-        list.appendChild(header);
+
+        const details = document.createElement("details");
+
+        // newest week open by default
+        if (week == Math.max(...Object.keys(grouped))) {
+          details.open = true;
+        }
+
+        const summary = document.createElement("summary");
+
+        const formattedWeek =
+          `Week ${String(week).padStart(2, "0")}`;
+
+        summary.textContent = formattedWeek;
+
+        details.appendChild(summary);
+
+        const ul = document.createElement("ul");
 
         grouped[week].forEach(post => {
           const li = document.createElement("li");
-          li.innerHTML = `<a href="${post.url}">${post.title}</a> (${post.date})`;
-          list.appendChild(li);
+
+          li.innerHTML = `
+            <a href="${post.url}">
+              ${post.title}
+            </a>
+            <small>(${post.date})</small>
+          `;
+
+          ul.appendChild(li);
         });
-    });
+
+        details.appendChild(ul);
+
+        list.appendChild(details);
+      });
   </script>
 
 </body>
