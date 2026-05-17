@@ -38,16 +38,19 @@
     });
 
     // render groups
-    Object.keys(grouped).forEach(week => {
-      const header = document.createElement("h2");
-      header.textContent = week;
-      list.appendChild(header);
+    Object.keys(grouped)
+      .sort((a, b) => b - a)
+      .forEach(week => {
+        const header = document.createElement("h2");
+        const formattedWeek = `Week ${String(week).padStart(2, "0")}`;
+        header.textContent = formattedWeek;
+        list.appendChild(header);
 
-      grouped[week].forEach(post => {
-        const li = document.createElement("li");
-        li.innerHTML = `<a href="${post.url}">${post.title}</a> (${post.date})`;
-        list.appendChild(li);
-      });
+        grouped[week].forEach(post => {
+          const li = document.createElement("li");
+          li.innerHTML = `<a href="${post.url}">${post.title}</a> (${post.date})`;
+          list.appendChild(li);
+        });
     });
   </script>
 
