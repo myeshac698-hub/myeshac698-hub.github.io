@@ -36,3 +36,7 @@ summary:hover {
 details ul {
   margin-top: 0.5rem;
 } 
+
+#latest-posts li {
+  margin-bottom: 1rem;
+}

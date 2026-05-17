@@ -1,23 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>(My)esha's Blog</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <h1>(My)esha's Blog</h1>
-
-  <p>Hi, I'm Myesha. I have lots of opinions on things and I like sharing them. I thought a blog would be a good place to keep them.</p>
-
-  <h2>Recent Thoughts</h2>
-  <ul>
-    <li><a href="thoughts.html">Thoughts on [Book/Movie]</a></li>
-    <li><a href="thoughts.html">Another entry</a></li>
-  </ul>
 
   <nav>
     <a href="index.html">Home</a> |
     <a href="thoughts.html">Thoughts</a>
   </nav>
+
+  <h1>(My)esha's Blog</h1>
+
+  <p>
+    Hi, I'm Myesha. I have lots of opinions on things and I like sharing them.
+    I thought a blog would be a good place to keep them.
+  </p>
+
+  <h2>Latest Posts</h2>
+
+  <ul id="latest-posts"></ul>
+
+  <script src="posts.js"></script>
+
+  <script>
+
+    const latestList =
+      document.getElementById("latest-posts");
+
+    // copy + sort newest first
+    const sortedPosts = [...posts].sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+
+    // show newest 3 posts
+    const latestPosts = sortedPosts.slice(0, 3);
+
+    latestPosts.forEach(post => {
+
+      const li = document.createElement("li");
+
+      li.innerHTML = `
+        <a href="${post.url}">
+          ${post.title}
+        </a>
+        <small>(${post.date})</small>
+      `;
+
+      latestList.appendChild(li);
+
+    });
+
+  </script>
+
 </body>
 </html>
