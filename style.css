@@ -46,6 +46,7 @@ nav a:hover {
 
 /* LINKS */
 a {
+  text-decoration: none;
   color: #1d4ed8;
 }
 
