@@ -93,3 +93,16 @@ hr {
   border: none;
   border-top: 1px solid #ddd;
 }
+
+/* CARD EFFECT */
+section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+::selection {
+  background: #dbeafe;
+}
