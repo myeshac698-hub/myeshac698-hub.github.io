@@ -1,5 +1,9 @@
 /* GENERAL PAGE */
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   max-width: 750px;
   margin: 0 auto;
@@ -40,17 +44,13 @@ nav a:hover {
   text-decoration: underline;
 }
 
- details {
-  margin-bottom: 1rem;
-}
-
 /* LINKS */
 a {
   color: #1d4ed8;
 }
 
 a:hover {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 /* POST LISTS */
