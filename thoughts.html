@@ -66,11 +66,19 @@
         grouped[week].forEach(post => {
           const li = document.createElement("li");
 
+          const tagsHTML = post.tags
+            .map(tag => `<span class="tag">${tag}</span>`)
+            .join("");
+
           li.innerHTML = `
             <a href="${post.url}">
               ${post.title}
             </a>
             <small>(${post.date})</small>
+
+            <div class="tags">
+              ${tagsHTML}
+            </div>
           `;
 
           ul.appendChild(li);

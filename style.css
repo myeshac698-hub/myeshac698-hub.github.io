@@ -128,3 +128,22 @@ section {
 .other-links li {
   margin-bottom: 0.75rem;
 }
+
+/* TAGS */
+.tags {
+  margin-top: 0.5rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  margin-right: 0.4rem;
+  margin-top: 0.3rem;
+
+  background-color: #e6ece4;
+  color: #5f705f;
+
+  border-radius: 999px;
+
+  font-size: 0.8rem;
+}
