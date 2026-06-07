@@ -11,8 +11,8 @@ body {
   font-family: 'Inter', sans-serif;
   line-height: 1.8;
   font-size: 18px;
-  background-color: #f7f6f2;
-  color: #2f342f;
+  background-color: #B5BDAE;
+  color: #2F342F;
 }
 
 h1, h2, summary {
@@ -41,7 +41,8 @@ p {
 /* NAVIGATION */
 
 nav {
-  margin-bottom: 2rem;
+  display: flex;
+  gap: 2rem;
 }
   
 nav a {
@@ -56,13 +57,13 @@ nav a:hover {
 
 /* LINKS */
 a {
-  color: #7a8b7a;
+  color: #6E7F69;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #b98a96;
+  color: #A37B84;
   text-decoration: underline;
 }
 
@@ -111,8 +112,8 @@ hr {
 
 /* CARD EFFECT */
 section {
-  background: white;
-  border: 1px solid #d9e0d7;
+  background: #F7F4EE;
+  border: 1px solid #D7DDD3;
   padding: 1.5rem;
   border-radius: 14px;
   margin-bottom: 2rem;
