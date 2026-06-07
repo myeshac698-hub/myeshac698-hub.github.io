@@ -118,3 +118,13 @@ section {
 ::selection {
   background: #dbeafe;
 }
+
+/* OTHER LINKS */
+.other-links {
+  list-style: none;
+  padding-left: 0;
+}
+
+.other-links li {
+  margin-bottom: 0.75rem;
+}
