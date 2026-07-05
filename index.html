@@ -49,16 +49,28 @@
 
     latestPosts.forEach(post => {
 
-      const li = document.createElement("li");
+      const section = document.createElement("section"); 
+      section.className = "post-preview";
 
-      li.innerHTML = `
-        <a href="${post.url}">
-          ${post.title}
-        </a>
-        <small>(${post.date})</small>
+      section.innerHTML = `
+        <h3>
+          <a href="${post.url}">
+            ${post.title}
+          </a>
+        </h3>
+
+        <p class="excerpt">
+          ${post.excerpt}
+        </p>
+
+        <small>${post.date}</small>
+
+        <div class="tags">
+          ${tagsHTML}
+        </div>
       `;
 
-      latestList.appendChild(li);
+      latestList.appendChild(section);
 
     });
 
