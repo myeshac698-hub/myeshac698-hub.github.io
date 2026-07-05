@@ -64,6 +64,10 @@
         </p>
 
         <small>${post.date}</small>
+
+        <div class="tags">
+          ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join(" ")}
+        </div>
       `;
 
       latestList.appendChild(section);
