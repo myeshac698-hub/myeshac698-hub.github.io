@@ -1,4 +1,4 @@
-const posts = [
+window.posts = [
     {
       title: "Thoughts on Example 1",
       url: "posts/post1.html",

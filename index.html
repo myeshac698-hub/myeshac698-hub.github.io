@@ -36,8 +36,7 @@
     <section>
       <blockquote>
         "An ongoing collection of things I've read,
-        watched, loved, disliked, and can't stop
-        thinking about."
+        watched, loved, disliked, and can't stop thinking about."
       </blockquote>
 
       <ul id="latest-posts"></ul>
@@ -61,49 +60,11 @@
 
   </main>
 
-  <script src="posts.js" defer></script>
+  <!-- ALWAYS load data first -->
+  <script src="posts.js"></script>
 
-  <script defer>
-    const latestList = document.getElementById("latest-posts");
-
-    if (latestList && Array.isArray(posts)) {
-
-      const sortedPosts = [...posts].sort(
-        (a, b) => new Date(b.date) - new Date(a.date)
-      );
-
-      const latestPosts = sortedPosts.slice(0, 3);
-
-      if (latestPosts.length === 0) {
-        latestList.innerHTML = "<p>No posts yet.</p>";
-      } else {
-
-        latestPosts.forEach(post => {
-          const section = document.createElement("section");
-          section.className = "post-preview";
-
-          section.innerHTML = `
-            <h3>
-              <a href="${post.url}">
-                ${post.title}
-              </a>
-            </h3>
-
-            <p class="excerpt">
-              ${post.excerpt}
-            </p>
-
-            <small>${post.date}</small>
-          `;
-
-          latestList.appendChild(section);
-        });
-
-      }
-    } else {
-      console.warn("Posts not loaded or latest-posts element missing");
-    }
-  </script>
+  <!-- THEN logic -->
+  <script src="main.js"></script>
 
 </body>
 
