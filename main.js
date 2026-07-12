@@ -40,3 +40,26 @@ if (!latestList || !Array.isArray(postsData)) {
     });
   }
 }
+
+const currentlyCard = document.getElementById("currently-card");
+
+if (currentlyCard && window.currently) {
+
+  currentlyCard.innerHTML = `
+    <p><strong>📖 Reading</strong><br>
+      ${window.currently.reading.title}
+    </p>
+
+    <p><strong>🎬 Watching</strong><br>
+      ${window.currently.watching.title}
+    </p>
+
+    <p><strong>🎮 Playing</strong><br>
+      ${window.currently.playing.title}
+    </p>
+
+    <p><strong>🎵 Listening</strong><br>
+      ${window.currently.listening.title}
+    </p>
+  `;
+}
