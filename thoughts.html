@@ -10,12 +10,15 @@
 
 <body>
 
-  <nav>
-    <a href="index.html">Home</a> 
-    <a href="thoughts.html">Thoughts</a>
-  </nav>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="thoughts.html">Thoughts</a>
+      <a href="about.html">About</a>
+    </nav>
 
-  <h1>Thoughts</h1>
+    <h1>Thoughts</h1>
+  </header>
 
   <ul id="post-list"></ul>
 
@@ -25,6 +28,8 @@
     const list = document.getElementById("post-list");
 
     // newest posts first
+    const posts = [...window.posts];
+
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     // group by week number

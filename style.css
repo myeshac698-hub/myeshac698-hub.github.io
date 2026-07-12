@@ -135,11 +135,9 @@ section {
 }
 
 .tag {
-  font-size: 12px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: #eee;
-  margin-right: 5px;
+  background: #E2E8DD;
+  color: #5F705F;
+  border: 1px solid #CCD6C7;
 }
 
 .excerpt {
