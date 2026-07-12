@@ -165,3 +165,25 @@ section {
   color: #6f8b73;
 }
 
+/* SEARCH */
+
+.search-container {
+  margin: 1.5rem 0 2rem;
+}
+
+#search {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #D7DDD3;
+  border-radius: 12px;
+  background: #F7F4EE;
+  color: #2F342F;
+}
+
+#search:focus {
+  outline: none;
+  border-color: #6E7F69;
+  box-shadow: 0 0 0 3px rgba(110,127,105,.15);
+}
