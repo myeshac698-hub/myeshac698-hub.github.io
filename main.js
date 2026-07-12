@@ -57,9 +57,5 @@ if (currentlyCard && window.currently) {
     <p><strong>🎮 Playing</strong><br>
       ${window.currently.playing.title}
     </p>
-
-    <p><strong>🎵 Listening</strong><br>
-      ${window.currently.listening.title}
-    </p>
   `;
 }
