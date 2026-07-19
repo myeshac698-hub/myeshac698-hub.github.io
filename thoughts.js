@@ -5,16 +5,25 @@ const sortedPosts = [...window.posts].sort(
   (a, b) => new Date(b.date) - new Date(a.date)
 );
 
+const activeFilter = document.getElementById("active-filter");
+
 // ----------------------------
 // Create one post
 // ----------------------------
 function createPostElement(post) {
 
   const li = document.createElement("li");
+  
 
   const tagsHTML = (post.tags || [])
-    .map(tag => `<span class="tag">${tag}</span>`)
-    .join(" ");
+  .map(tag => `
+    <button
+      class="tag"
+      data-tag="${tag}">
+      ${tag}
+    </button>
+  `)
+  .join(" ");
 
   li.innerHTML = `
     <a href="${post.url}">
@@ -139,6 +148,49 @@ if (search) {
 
     renderPosts(filtered);
 
+    activeFilter.innerHTML = `
+  <p class="filter-banner">
+    🏷️ Showing posts tagged:
+    <strong>${tag}</strong>
+
+    <button id="clear-filter">
+      Clear
+    </button>
+  </p>
+`;
+
   });
 
 }
+
+document.addEventListener("click", event => {
+
+  if (!event.target.classList.contains("tag")) {
+    return;
+  }
+
+  const tag = event.target.dataset.tag;
+
+  const filtered = sortedPosts.filter(post =>
+    post.tags.includes(tag)
+  );
+
+  renderPosts(filtered);
+
+});
+
+document.addEventListener("click", event => {
+
+  if (event.target.id !== "clear-filter") {
+    return;
+  }
+
+  renderPosts(sortedPosts);
+
+  activeFilter.innerHTML = "";
+
+  if (search) {
+    search.value = "";
+  }
+
+});

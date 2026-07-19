@@ -135,9 +135,22 @@ section {
 }
 
 .tag {
-  background: #E2E8DD;
-  color: #5F705F;
-  border: 1px solid #CCD6C7;
+  border: none;
+  background: #E8ECE5;
+  color: #4F5D4F;
+  border-radius: 999px;
+  padding: 4px 10px;
+  margin-right: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-family: inherit;
+
+  transition: all .2s ease;
+}
+
+.tag:hover {
+  background: #A37B84;
+  color: white;
 }
 
 .excerpt {
@@ -186,4 +199,25 @@ section {
   outline: none;
   border-color: #6E7F69;
   box-shadow: 0 0 0 3px rgba(110,127,105,.15);
+}
+
+.filter-banner {
+  background: #F7F4EE;
+  border: 1px solid #D7DDD3;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+#clear-filter {
+  margin-left: 1rem;
+  border: none;
+  background: none;
+  color: #6E7F69;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#clear-filter:hover {
+  text-decoration: underline;
 }
