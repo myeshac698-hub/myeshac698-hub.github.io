@@ -148,17 +148,7 @@ if (search) {
 
     renderPosts(filtered);
 
-    activeFilter.innerHTML = `
-  <p class="filter-banner">
-    🏷️ Showing posts tagged:
-    <strong>${tag}</strong>
-
-    <button id="clear-filter">
-      Clear
-    </button>
-  </p>
-`;
-
+    activeFilter.innerHTML = "";
   });
 
 }
@@ -176,6 +166,17 @@ document.addEventListener("click", event => {
   );
 
   renderPosts(filtered);
+
+  activeFilter.innerHTML = `
+  <p class="filter-banner">
+    🏷️ Showing posts tagged:
+    <strong>${tag}</strong>
+
+    <button id="clear-filter">
+      Clear
+    </button>
+  </p>
+`;
 
 });
 
