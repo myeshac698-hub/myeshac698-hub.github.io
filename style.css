@@ -135,15 +135,55 @@ section {
 }
 
 .tag {
-  display: inline-block;
-  padding: 0.25rem 0.7rem;
-  margin-right: 0.4rem;
-  margin-top: 0.3rem;
+  background: #E2E8DD;
+  color: #5F705F;
+  border: 1px solid #CCD6C7;
+}
 
-  background-color: #e6ece4;
-  color: #5f705f;
+.excerpt {
+  margin: 0.6rem 0;
+  color: #555;
+  font-style: italic;
+  line-height: 1.6;
+}
 
-  border-radius: 999px;
+.post-preview {
+  margin-bottom: 2rem;
+}
 
-  font-size: 0.8rem;
+.post-preview h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.post-preview h3 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-preview h3 a:hover {
+  color: #6f8b73;
+}
+
+/* SEARCH */
+
+.search-container {
+  margin: 1.5rem 0 2rem;
+}
+
+#search {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #D7DDD3;
+  border-radius: 12px;
+  background: #F7F4EE;
+  color: #2F342F;
+}
+
+#search:focus {
+  outline: none;
+  border-color: #6E7F69;
+  box-shadow: 0 0 0 3px rgba(110,127,105,.15);
 }

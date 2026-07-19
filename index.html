@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>(My)esha's Blog</title>
+
   <link rel="stylesheet" href="style.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,74 +16,65 @@
 
 <body>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="thoughts.html">Thoughts</a>
-  </nav>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="thoughts.html">Thoughts</a>
+      <a href="about.html">About</a>
+    </nav>
 
-  <h1>(My)esha's Blog</h1>
-
-  <p>
-    Hi, I'm Myesha. I have lots of opinions on things and I like sharing them.
-    I thought a blog would be a good place to keep them.
-  </p>
-  
-  <section>
-    <blockquote>
-      "An ongoing collection of things I've read,
-      watched, loved, disliked, and can't stop
-      thinking about."
-    </blockquote>
-    <ul id="latest-posts"></ul>
-    <script src="posts.js"></script>
-  </section>
-  
-  <script>
-
-    const latestList =
-      document.getElementById("latest-posts");
-
-    // copy + sort newest first
-    const sortedPosts = [...posts].sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    );
-
-    // show newest 3 posts
-    const latestPosts = sortedPosts.slice(0, 3);
-
-    latestPosts.forEach(post => {
-
-      const li = document.createElement("li");
-
-      li.innerHTML = `
-        <a href="${post.url}">
-          ${post.title}
-        </a>
-        <small>(${post.date})</small>
-      `;
-
-      latestList.appendChild(li);
-
-    });
-
-  </script>
-
-  <section>
-    <h2>Other Corners of the Internet</h2>
+    <h1>(My)esha's Blog</h1>
 
     <p>
-    Other places where I keep track of things I read,
-    watch, and occasionally obsess over.
+      Hi, I'm Myesha. I have lots of opinions on things and I like sharing them.
+      I thought a blog would be a good place to keep them.
     </p>
+  </header>
 
-    <ul class="other-links">
-      <li><a href="https://www.goodreads.com/user/show/201235929
-">Goodreads - for books</a></li>
-      <li><a href="https://boxd.it/lc8Df">Letterboxd - for movies</a></li>
-      <li><a href="https://bckl.gg/uen9">Backloggd - for video games</a></li>
-      <li><a href="https://srlzd.com/u/mchoud6">Serializd - for TV shows</a></li>
-    </ul>
-  </section>
+  <main>
+
+    <section>
+      <blockquote>
+        "An ongoing collection of things I've read,
+        watched, loved, disliked, and can't stop thinking about."
+      </blockquote>
+
+      <ul id="latest-posts"></ul>
+    </section>
+
+    <section>
+
+      <h2>Currently</h2>
+    
+      <div id="currently-card"></div>
+    
+    </section>
+
+    <section>
+      <h2>Other Corners of the Internet</h2>
+
+      <p>
+        Other places where I keep track of things I read,
+        watch, and occasionally obsess over.
+      </p>
+
+      <ul class="other-links">
+        <li><a href="https://www.goodreads.com/user/show/201235929">Goodreads - for books</a></li>
+        <li><a href="https://boxd.it/lc8Df">Letterboxd - for movies</a></li>
+        <li><a href="https://bckl.gg/uen9">Backloggd - for video games</a></li>
+        <li><a href="https://srlzd.com/u/mchoud6">Serializd - for TV shows</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ALWAYS load data first -->
+  <script src="posts.js"></script>
+  <script src="currently.js"></script>
+
+  <!-- THEN logic -->
+  <script src="main.js"></script>
 
 </body>
+
 </html>

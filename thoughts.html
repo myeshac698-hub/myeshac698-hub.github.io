@@ -10,85 +10,30 @@
 
 <body>
 
-  <nav>
-    <a href="index.html">Home</a> 
-    <a href="thoughts.html">Thoughts</a>
-  </nav>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="thoughts.html">Thoughts</a>
+      <a href="about.html">About</a>
+    </nav>
 
-  <h1>Thoughts</h1>
+    <h1>Thoughts</h1>
+  </header>
+
+  <div class="search-container">
+    <input
+      type="text"
+      id="search"
+      placeholder="Search thoughts..."
+      autocomplete="off"
+    >
+  </div>
 
   <ul id="post-list"></ul>
 
   <script src="posts.js"></script>
-
-  <script>
-    const list = document.getElementById("post-list");
-
-    // newest posts first
-    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    // group by week number
-    const grouped = {};
-
-    posts.forEach(post => {
-      const week = post.week || 0;
-
-      if (!grouped[week]) {
-        grouped[week] = [];
-      }
-
-      grouped[week].push(post);
-    });
-
-    // render grouped weeks
-    Object.keys(grouped)
-      .sort((a, b) => b - a)
-      .forEach(week => {
-
-        const details = document.createElement("details");
-
-        // newest week open by default
-        if (week == Math.max(...Object.keys(grouped))) {
-          details.open = true;
-        }
-
-        const summary = document.createElement("summary");
-
-        const formattedWeek =
-          `Week ${String(week).padStart(2, "0")}`;
-
-        summary.textContent = formattedWeek;
-
-        details.appendChild(summary);
-
-        const ul = document.createElement("ul");
-
-        grouped[week].forEach(post => {
-          const li = document.createElement("li");
-
-          const tagsHTML = post.tags
-            .map(tag => `<span class="tag">${tag}</span>`)
-            .join("");
-
-          li.innerHTML = `
-            <a href="${post.url}">
-              ${post.title}
-            </a>
-            <small>(${post.date})</small>
-
-            <div class="tags">
-              ${tagsHTML}
-            </div>
-          `;
-
-          ul.appendChild(li);
-        });
-
-        details.appendChild(ul);
-
-        list.appendChild(details);
-      });
-  </script>
+  <script src="thoughts.js"></script>
+  
 
 </body>
 </html>
