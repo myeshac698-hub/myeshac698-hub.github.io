@@ -7,6 +7,16 @@ const sortedPosts = [...window.posts].sort(
 
 const activeFilter = document.getElementById("active-filter");
 
+let activeTag = null;
+let searchQuery = "";
+
+function updatePosts() {
+    // Start with all posts
+    // Apply the active tag if there is one
+    // Apply the search query if there is one
+    // Render the final list
+}
+
 // ----------------------------
 // Create one post
 // ----------------------------
@@ -124,7 +134,7 @@ if (search) {
 
   search.addEventListener("input", () => {
 
-    const query = search.value
+    searchQuery = search.value
       .toLowerCase()
       .trim();
 
@@ -139,9 +149,9 @@ if (search) {
         .toLowerCase();
 
       return (
-        title.includes(query) ||
-        excerpt.includes(query) ||
-        tags.includes(query)
+        title.includes(searchQuery) ||
+        excerpt.includes(searchQuery) ||
+        tags.includes(searchQuery)
       );
 
     });
@@ -155,43 +165,56 @@ if (search) {
 
 document.addEventListener("click", event => {
 
-  if (!event.target.classList.contains("tag")) {
+  // ----------------------------
+  // Tag clicked
+  // ----------------------------
+  if (event.target.classList.contains("tag")) {
+
+    const tag = event.target.dataset.tag;
+
+    activeTag = tag;
+
+    const filtered = sortedPosts.filter(post =>
+      (post.tags || []).includes(tag)
+    );
+
+    renderPosts(filtered);
+
+    activeFilter.innerHTML = `
+      <div class="filter-banner">
+        <span>🏷️ Active Filter</span>
+
+        <button
+          class="active-tag"
+          id="clear-filter"
+          title="Remove filter"
+        >
+          ${tag}
+          <span class="remove-filter">&times;</span>
+        </button>
+      </div>
+    `;
+
     return;
   }
 
-  const tag = event.target.dataset.tag;
+  // ----------------------------
+  // Remove filter
+  // ----------------------------
+  if (event.target.closest("#clear-filter")) {
 
-  const filtered = sortedPosts.filter(post =>
-    post.tags.includes(tag)
-  );
+    activeTag = null;
+    searchQuery = "";
 
-  renderPosts(filtered);
+    renderPosts(sortedPosts);
 
-  activeFilter.innerHTML = `
-  <p class="filter-banner">
-    🏷️ Showing posts tagged:
-    <strong>${tag}</strong>
+    activeFilter.innerHTML = "";
 
-    <button id="clear-filter">
-      Clear
-    </button>
-  </p>
-`;
+    if (search) {
+      search.value = "";
+    }
 
-});
-
-document.addEventListener("click", event => {
-
-  if (event.target.id !== "clear-filter") {
     return;
-  }
-
-  renderPosts(sortedPosts);
-
-  activeFilter.innerHTML = "";
-
-  if (search) {
-    search.value = "";
   }
 
 });

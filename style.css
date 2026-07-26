@@ -202,22 +202,39 @@ section {
 }
 
 .filter-banner {
-  background: #F7F4EE;
-  border: 1px solid #D7DDD3;
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+
   margin-bottom: 1rem;
 }
 
-#clear-filter {
-  margin-left: 1rem;
+.active-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+
   border: none;
-  background: none;
-  color: #6E7F69;
+  border-radius: 999px;
+
+  padding: .4rem .9rem;
+
+  background: #6E7F69;
+  color: white;
+
+  font-size: .9rem;
+  font-family: inherit;
+
   cursor: pointer;
-  font-weight: 600;
+
+  transition: .2s;
 }
 
-#clear-filter:hover {
-  text-decoration: underline;
+.active-tag:hover {
+  background: #A37B84;
+}
+
+.remove-filter {
+  font-size: 1rem;
+  line-height: 1;
 }
