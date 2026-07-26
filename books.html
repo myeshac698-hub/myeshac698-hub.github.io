@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Books</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body data-category="Book">
+
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="thoughts.html">Thoughts</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <h1>Books</h1>
+  </header>
+  <div id="active-filter"></div>
+  <div class="search-container">
+    <input
+      type="text"
+      id="search"
+      placeholder="Search books..."
+      autocomplete="off"
+    >
+  </div>
+
+  <ul id="post-list"></ul>
+
+  <script src="posts.js"></script>
+  <script src="thoughts.js"></script>
+  
+
+</body>
+</html>

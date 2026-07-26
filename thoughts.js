@@ -6,16 +6,60 @@ const sortedPosts = [...window.posts].sort(
 );
 
 const activeFilter = document.getElementById("active-filter");
+const pageCategory = document.body.dataset.category || null;
 
 let activeTag = null;
 let searchQuery = "";
 
+
+// ----------------------------
+// Update posts (all filtering)
+// ----------------------------
 function updatePosts() {
-    // Start with all posts
-    // Apply the active tag if there is one
-    // Apply the search query if there is one
-    // Render the final list
+
+  let filtered = [...sortedPosts];
+
+  // Filter by page category
+  if (pageCategory) {
+    filtered = filtered.filter(post =>
+      post.mediaType === pageCategory
+    );
+  }
+
+  // Filter by active tag
+  if (activeTag) {
+    filtered = filtered.filter(post =>
+      (post.tags || []).includes(activeTag)
+    );
+  }
+
+  // Filter by search query
+  if (searchQuery) {
+
+    filtered = filtered.filter(post => {
+
+      const title = post.title.toLowerCase();
+
+      const excerpt = (post.excerpt || "").toLowerCase();
+
+      const tags = (post.tags || [])
+        .join(" ")
+        .toLowerCase();
+
+      return (
+        title.includes(searchQuery) ||
+        excerpt.includes(searchQuery) ||
+        tags.includes(searchQuery)
+      );
+
+    });
+
+  }
+
+  renderPosts(filtered);
+
 }
+
 
 // ----------------------------
 // Create one post
@@ -23,17 +67,16 @@ function updatePosts() {
 function createPostElement(post) {
 
   const li = document.createElement("li");
-  
 
   const tagsHTML = (post.tags || [])
-  .map(tag => `
-    <button
-      class="tag"
-      data-tag="${tag}">
-      ${tag}
-    </button>
-  `)
-  .join(" ");
+    .map(tag => `
+      <button
+        class="tag"
+        data-tag="${tag}">
+        ${tag}
+      </button>
+    `)
+    .join(" ");
 
   li.innerHTML = `
     <a href="${post.url}">
@@ -56,15 +99,14 @@ function createPostElement(post) {
   return li;
 }
 
+
 // ----------------------------
-// Render a list of posts
+// Render posts
 // ----------------------------
 function renderPosts(postsToRender) {
 
-  // Clear previous content
   list.innerHTML = "";
 
-  // Show a message if nothing matches
   if (postsToRender.length === 0) {
 
     list.innerHTML = `
@@ -102,7 +144,8 @@ function renderPosts(postsToRender) {
 
     const summary = document.createElement("summary");
 
-    summary.textContent = `Week ${String(week).padStart(2, "0")}`;
+    summary.textContent =
+      `Week ${String(week).padStart(2, "0")}`;
 
     details.appendChild(summary);
 
@@ -120,10 +163,12 @@ function renderPosts(postsToRender) {
 
 }
 
+
 // ----------------------------
 // Initial page load
 // ----------------------------
-renderPosts(sortedPosts);
+updatePosts();
+
 
 // ----------------------------
 // Search
@@ -138,47 +183,22 @@ if (search) {
       .toLowerCase()
       .trim();
 
-    const filtered = sortedPosts.filter(post => {
+    updatePosts();
 
-      const title = post.title.toLowerCase();
-
-      const excerpt = (post.excerpt || "").toLowerCase();
-
-      const tags = (post.tags || [])
-        .join(" ")
-        .toLowerCase();
-
-      return (
-        title.includes(searchQuery) ||
-        excerpt.includes(searchQuery) ||
-        tags.includes(searchQuery)
-      );
-
-    });
-
-    renderPosts(filtered);
-
-    activeFilter.innerHTML = "";
   });
 
 }
 
+
+// ----------------------------
+// Click handling
+// ----------------------------
 document.addEventListener("click", event => {
 
-  // ----------------------------
   // Tag clicked
-  // ----------------------------
   if (event.target.classList.contains("tag")) {
 
-    const tag = event.target.dataset.tag;
-
-    activeTag = tag;
-
-    const filtered = sortedPosts.filter(post =>
-      (post.tags || []).includes(tag)
-    );
-
-    renderPosts(filtered);
+    activeTag = event.target.dataset.tag;
 
     activeFilter.innerHTML = `
       <div class="filter-banner">
@@ -189,30 +209,30 @@ document.addEventListener("click", event => {
           id="clear-filter"
           title="Remove filter"
         >
-          ${tag}
+          ${activeTag}
           <span class="remove-filter">&times;</span>
         </button>
       </div>
     `;
 
+    updatePosts();
+
     return;
   }
 
-  // ----------------------------
-  // Remove filter
-  // ----------------------------
+  // Clear filter clicked
   if (event.target.closest("#clear-filter")) {
 
     activeTag = null;
     searchQuery = "";
 
-    renderPosts(sortedPosts);
-
-    activeFilter.innerHTML = "";
-
     if (search) {
       search.value = "";
     }
+
+    activeFilter.innerHTML = "";
+
+    updatePosts();
 
     return;
   }
